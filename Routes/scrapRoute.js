@@ -13,8 +13,6 @@ router.get('/getEvents/:county/:city', async (req, res) => {
 
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser',  
-            userDataDir: process.env.PUPPETEER_CACHE_DIR || '/opt/render/.cache/puppeteer',
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
         const page = await browser.newPage();
