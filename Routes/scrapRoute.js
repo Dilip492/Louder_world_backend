@@ -21,15 +21,6 @@ router.get('/getEvents/:county/:city', async (req, res) => {
 
         await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
-        await page.setRequestInterception(true);
-        page.on('request', (request) => {
-            const resourceType = request.resourceType();
-            if (['image', 'stylesheet', 'font', 'media',].includes(resourceType)) {
-                request.abort();
-            } else {
-                request.continue();
-            }
-        })
         await page.waitForSelector('section.discover-vertical-event-card');
 
 
